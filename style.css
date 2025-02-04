@@ -41,40 +41,55 @@
 }
 
 /* Body & Overall Layout */
+html,
 body {
-    /* Dark, slightly warm tone. Inspired by iPhone/ChatGPT dark themes. */
+    /* Using dynamic viewport height to adapt better to mobile UI changes. */
+    height: 100%;
+    /* Use modern dynamic viewport unit for even better handling on some browsers:
+       height: 100dvh; (optional)
+     */
+}
+
+body {
     background-color: #1E1E1E;
     color: #E8E8E8;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    /* Allow page to scroll when the keyboard is open */
+    overflow: auto;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    min-height: -webkit-fill-available;
-    overflow: hidden;
-    padding: 20px 20px 0 20px; /* Remove bottom padding */
-    min-height: 100vh;
-}
 
-html {
-    height: -webkit-fill-available;
+    /* Padding around the content */
+    padding: 20px;
+    /* Ensure it occupies the full window height for a typical setup */
+    min-height: 100vh;
 }
 
 /* Chat Container */
 .chat-container {
+    /* Let this container fill up the leftover space. */
     flex: 1;
+
+    /* Enable vertical scroll within the chat area. */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+
     display: flex;
     flex-direction: column;
+
     background-color: rgba(42, 42, 42, 0.7);
     border-radius: 24px;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     margin: 10px 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    height: calc(100vh - 180px);
-    min-height: 200px; /* Minimum height when keyboard is open */
-    transition: height 0.3s ease; /* Smooth height transition */
+
+    /* Let the container shrink if needed when the keyboard opens */
+    min-height: 0;
+
+    /* Smooth out transitions if you want to keep them */
+    transition: all 0.3s ease;
 }
 
 /* Message Bubbles */
@@ -88,7 +103,6 @@ html {
     line-height: 1.5;
     display: inline-block;
     position: relative;
-    /* Subtle shadow to lift bubble from background */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     animation: float 0.5s ease-out;
 }
@@ -96,7 +110,6 @@ html {
 .user {
     align-self: flex-end;
     background-color: rgba(74, 74, 74, 0.9);
-    /* Slightly lighter gray for user bubble */
     color: #FFFFFF;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transform-origin: bottom right;
@@ -105,7 +118,6 @@ html {
 .ai {
     align-self: flex-start;
     background-color: rgba(42, 42, 42, 0.9);
-    /* Darker gray for AI bubble */
     color: #E8E8E8;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transform-origin: bottom left;
@@ -122,15 +134,17 @@ html {
     margin-top: 5px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Sticky to bottom so it stays above the keyboard */
     position: sticky;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 10px 0 10px 0;
-    z-index: 1000;
-    background: 1E1E1E;
-    padding: 10px;
+    margin: 10px 0;
     z-index: 100;
+
+    /* This background fixes a bug on some mobile browsers */
+    background: #1E1E1E;
 }
 
 .input-container input {
@@ -148,7 +162,6 @@ html {
 .input-container input:focus {
     outline: none;
     background-color: rgba(75, 75, 75, 0.9);
-    /* Subtle glow to show focus */
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2),
         0 0 8px rgba(255, 255, 255, 0.1);
 }
@@ -198,7 +211,7 @@ html {
     }
 }
 
-/* Animation Keyframes */
+/* Float-in animation for messages */
 @keyframes float {
     0% {
         opacity: 0;
@@ -220,43 +233,43 @@ html {
 
     .input-container {
         padding: 10px;
-        margin: 5px 0 5px 0;
+        margin: 5px 0;
     }
 
     body {
-        padding: 10px 10px 0 10px;
+        padding: 10px;
     }
 
+    /* Remove any leftover fixed heights in favor of flex resizing */
     .chat-container {
-        max-height: calc(100vh - 160px);
         margin-bottom: 5px;
     }
 }
 
-/* Handle keyboard appearance on mobile */
+/* Handle extra-small screens or keyboard overlap */
 @media screen and (max-height: 400px) {
     .chat-container {
-        height: calc(100vh - 120px); /* Smaller height when keyboard is visible */
-        min-height: 150px;
+        /* Let flex handle it; remove fixed heights to allow more space for keyboard */
+        min-height: 0;
         padding: 8px;
     }
-    
+
     .message {
         margin-bottom: 6px;
         padding: 8px 12px;
         font-size: 14px;
     }
-    
+
     .input-container {
         padding: 8px;
     }
-    
+
     .input-container input {
         padding: 8px 12px;
     }
 }
 
-/* Add padding for devices with home indicator (like iPhone X and newer) */
+/* Add padding for devices with a home indicator (like iPhone X, etc.) */
 @supports (padding: max(0px)) {
     .input-container {
         padding-bottom: max(10px, env(safe-area-inset-bottom));
