@@ -17,6 +17,27 @@ if (window.visualViewport) {
 // Initialize viewport height
 handleViewportChange();
 
+// Handle mobile keyboard
+function adjustChatContainerSize() {
+    const isKeyboardVisible = window.visualViewport.height < window.innerHeight;
+    const chatContainer = document.getElementById('chatContainer');
+    
+    if (isKeyboardVisible) {
+        const keyboardHeight = window.innerHeight - window.visualViewport.height;
+        const newHeight = `calc(100vh - ${keyboardHeight + 120}px)`;
+        chatContainer.style.height = newHeight;
+    } else {
+        chatContainer.style.height = 'calc(100vh - 180px)';
+    }
+    
+    // Ensure scroll to bottom after resize
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', adjustChatContainerSize);
+}
+
 const chatContainer = document.getElementById('chatContainer');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');

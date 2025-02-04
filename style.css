@@ -62,21 +62,19 @@ html {
 /* Chat Container */
 .chat-container {
     flex: 1;
-    padding: 20px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
-    /* Subtle top border effect to separate from the header (if any in future) */
     background-color: rgba(42, 42, 42, 0.7);
     border-radius: 24px;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 10px 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: calc(100vh - 180px); /* Adjust for header and input height */
-    -webkit-overflow-scrolling: touch;
-    height: 0; /* Forces content to stay within flex container */
+    height: calc(100vh - 180px);
+    min-height: 200px; /* Minimum height when keyboard is open */
+    transition: height 0.3s ease; /* Smooth height transition */
 }
 
 /* Message Bubbles */
@@ -237,22 +235,24 @@ html {
 
 /* Handle keyboard appearance on mobile */
 @media screen and (max-height: 400px) {
-    body {
-        min-height: 0;
-    }
-    
     .chat-container {
-        padding: 10px;
+        height: calc(100vh - 120px); /* Smaller height when keyboard is visible */
+        min-height: 150px;
+        padding: 8px;
     }
     
     .message {
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+        padding: 8px 12px;
         font-size: 14px;
     }
     
-    h2 {
-        font-size: 18px;
-        margin: 5px 0;
+    .input-container {
+        padding: 8px;
+    }
+    
+    .input-container input {
+        padding: 8px 12px;
     }
 }
 
