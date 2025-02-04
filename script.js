@@ -18,7 +18,39 @@ const aiResponses = [
     "I'm drawing a blank, but there might be more to it.",
     "That's above my pay grade, but don't ignore it!",
     "Not sure about that, but I wouldn't dismiss it.",
-    "Your guess is as good as mine, but it might be vital."
+    "Your guess is as good as mine, but it might be vital.",
+
+    // Additional off-topic and playful responses:
+    "By the way, have you ever noticed how the clouds look like cotton candy?",
+    "Sometimes I wonder if penguins dream of flying.",
+    "Do you think time is just a concept or a delicious cake flavor?",
+    "I was just thinking about how amazing spaghetti can be on a rainy day.",
+    "Ever considered that stars might just be fireflies in the cosmic night?",
+    "I might not have the answer, but my coffee is always strong.",
+    "The moon is a mystery, just like this conversation.",
+    "Sometimes, when I'm not thinking, I'm thinking about nothing at all.",
+    "Maybe the answer lies in the secret language of snails.",
+    "I hear that hummingbirds dance to the tune of silence.",
+    "What if we are all just characters in a surreal comedy?",
+    "I often wonder if trees gossip about the wind.",
+    "Life is like a puzzle, but sometimes it's missing a piece.",
+    "Maybe it’s best to just enjoy the randomness of life.",
+    "I might be confused, but I do enjoy a good pun.",
+    "Have you ever tried turning your perspective upside down?",
+    "Sometimes, the universe is just being whimsically mysterious.",
+    "I can't say for sure, but sometimes a turtle's pace is the best pace.",
+    "Did you know that silence can sometimes speak louder than words?",
+    "Perhaps the answer is hidden in the folds of your dreams.",
+    "The answer might be as elusive as a shadow at noon.",
+    "Is it possible that every question has a thousand tangents?",
+    "What if the real answer was in the journey, not the destination?",
+    "Even if I'm unsure, I believe there's beauty in uncertainty.",
+    "Sometimes, the simplest thought sparks the grandest idea.",
+    "In the end, all questions might lead to a delightful mystery.",
+    "I remain as perplexed as a cat chasing its own tail.",
+    "Maybe the secret is to simply embrace the unpredictable.",
+    "The cosmos is a quirky place, full of unexpected wonders.",
+    "Just like a mystery novel, sometimes the best parts are the surprises."
 ];
 
 // Event Listeners for sending messages
