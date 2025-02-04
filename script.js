@@ -1,3 +1,22 @@
+// Add at the start of the file
+let viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+function handleViewportChange() {
+    viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--vh', `${viewportHeight * 0.01}px`);
+}
+
+// Add event listeners for viewport changes
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handleViewportChange);
+    window.visualViewport.addEventListener('scroll', handleViewportChange);
+} else {
+    window.addEventListener('resize', handleViewportChange);
+}
+
+// Initialize viewport height
+handleViewportChange();
+
 const chatContainer = document.getElementById('chatContainer');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');

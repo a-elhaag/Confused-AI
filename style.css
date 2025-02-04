@@ -52,9 +52,9 @@ body {
     min-height: -webkit-fill-available;
     overflow: hidden;
     padding: 20px 20px 0 20px; /* Remove bottom padding */
+    min-height: 100vh;
 }
 
-/* Make sure the html element also uses the full height */
 html {
     height: -webkit-fill-available;
 }
@@ -75,6 +75,8 @@ html {
     margin-bottom: 5px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-height: calc(100vh - 180px); /* Adjust for header and input height */
+    -webkit-overflow-scrolling: touch;
+    height: 0; /* Forces content to stay within flex container */
 }
 
 /* Message Bubbles */
@@ -128,6 +130,9 @@ html {
     right: 0;
     margin: 10px 0 10px 0;
     z-index: 1000;
+    background: 1E1E1E;
+    padding: 10px;
+    z-index: 100;
 }
 
 .input-container input {
@@ -227,5 +232,33 @@ html {
     .chat-container {
         max-height: calc(100vh - 160px);
         margin-bottom: 5px;
+    }
+}
+
+/* Handle keyboard appearance on mobile */
+@media screen and (max-height: 400px) {
+    body {
+        min-height: 0;
+    }
+    
+    .chat-container {
+        padding: 10px;
+    }
+    
+    .message {
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+}
+
+/* Add padding for devices with home indicator (like iPhone X and newer) */
+@supports (padding: max(0px)) {
+    .input-container {
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
     }
 }
