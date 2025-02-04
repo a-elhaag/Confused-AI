@@ -19,8 +19,6 @@ const aiResponses = [
     "That's above my pay grade, but don't ignore it!",
     "Not sure about that, but I wouldn't dismiss it.",
     "Your guess is as good as mine, but it might be vital.",
-
-    // Additional off-topic and playful responses:
     "By the way, have you ever noticed how the clouds look like cotton candy?",
     "Sometimes I wonder if penguins dream of flying.",
     "Do you think time is just a concept or a delicious cake flavor?",
